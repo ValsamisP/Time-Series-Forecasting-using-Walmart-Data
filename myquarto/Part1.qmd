@@ -212,6 +212,15 @@ plt.show()
 
 Before modeling, we test whether the series exhibits a significant trend.
 
+:::{.callout-note}
+## Notes for Statistical Tests
+
+- Why we used stationary test (ADF,KPSS) for checking for trend? Stationary series has constant mean, an increasing or decreasing trend violates this definition.
+
+- MANN-KENDALL test and COX-STUART test are mainly used for identifying trend.
+
+:::
+
 ```{python}
 #| code-fold: true
 from run_trend_analysis import analyze_series
@@ -224,6 +233,55 @@ results = analyze_series(df_store_for_tests, series_name="Store 1")
 ::: {.callout-tip}
 ## Trend Analysis Conclusion
 Mixed results from statistical tests suggest weak or no persistent trend. Visual inspection confirms regular seasonality without long-term increase/decrease. Therefore, we use **Holt-Winters Seasonal (No Trend)** model.
+:::
+
+
+::: {.callout-note}
+## Why Holt-Winters
+Holt Winters uses exponential smoothing to assign more weight to recent observations while reducing the influence of older data. This method ensures that the model is responsive to recent changes in seanlity or trends(here we assumed no trend), making it ideal for scenarios where the latest data is the most relevant for forecasting.
+:::
+
+::: {.callout-note}
+## Holt–Winters (Additive) Formulas
+
+### Updating equations
+
+$$
+L_t = \alpha (y_t - S_{t-m}) + (1-\alpha)(L_{t-1}+T_{t-1})
+$$
+
+$$
+T_t = \beta (L_t - L_{t-1}) + (1-\beta)T_{t-1}
+$$
+
+$$
+S_t = \gamma (y_t - L_t) + (1-\gamma) S_{t-m}
+$$
+
+### Forecast
+
+$$
+\hat y_{t+h} = L_t + hT_t + S_{t+h-mk},
+\qquad
+k=\left\lfloor \frac{h-1}{m} \right\rfloor
+$$
+:::
+
+
+::: {.callout-note}
+**Benefits:** 
+
+- Balances recent and historical data. As we said it uses exponential smoothing to prioritize recent observations while still incorporating historical data. 
+
+- Lower computational power. Compared to other machine learning and deep learning models requires by far less computational power and resources.
+
+**Drawbacks:**
+
+- Sensitivity to parameter tuning. It requires grid search of the parameters in order not to provide inaccurate parameters.
+
+- It is not performing very well in non-linear patterns. While it performs well on datasets with clear trends and seasonal cycles it is not suited for datasets where exhibits non-linear growth or decline.
+
+
 :::
 
 ## Step 3: Holt-Winters Forecasting (Additive Seasonality)
@@ -734,6 +792,17 @@ method2_results = {
 }
 ```
 
+
+::: {.callout-note}
+## Notes
+From the above graph, we can see that the forecasted sales for department 1 using the aggregate-then-disaggregate method does not capture the actual sales pattern very well. The forecasted values are significantly lower than the actual sales during the 3/4 of the test period, indicating that this method may not be effective for department-level forecasting in this case.
+
+We expect that Method 1 (direct forecasting at the department level) will outperform Method 2 (aggregate-then-disaggregate) for department-level forecasts. This is because Method 1 can capture department-specific trends and seasonal patterns that are lost when aggregating sales across all departments in Method 2. As a result, we anticipate lower forecast errors (e.g., RMSE) for Method 1 compared to Method 2 when evaluating at the department level.
+
+
+:::
+
+
 ---
 
 # Method 1: Direct Department-Level Forecasting
@@ -1176,6 +1245,17 @@ We avoid MAPE (Mean Absolute Percentage Error) because:
 
 ---
 
+
+## Comparison Additive vs Multiplicative Seasonality (Theory)
+
+| Additive | Multiplicative
+|--------|-----------
+| Seasonality is independent of the series level | Seasonality scales with the level 
+| Peaks and dips are about the same size every season   | Peaks get bigger when the series gets bigger
+| E.g. Temperature Time Series, rainfall in mm, energy usage in kWh  | Retail sales, revenue, website traffic
+| If seasonality looks like a fixed number | If it looks like a fixed percentage
+
+
 # Conclusions
 
 ## Key Findings
@@ -1260,11 +1340,12 @@ For **retail forecasting practitioners**:
 
 ## Statistical Tests
 
-- Augmented Dickey-Fuller Test for stationarity
-- KPSS Test for trend-stationarity
-- Mann-Kendall Trend Test
-- Linear Regression Slope Test
-
+- Augmented Dickey-Fuller Test for stationarity(We can make some conclusion for trend based on that as well)
+- KPSS Test for trend-stationarity (Same logic with ADF test)
+- Mann-Kendall Trend Test(Checking if there is a monotonic trend)
+- Linear Regression Slope Test(Is the mean changing linearly with time?)
+- Cox-Stuart Test(Is the second half systematically larger than the first?)
+- Spearman's Rank Correlation Test(Is there any monotonic relationship between time and value?)
 ---
 
 # Appendix: Code Repository
@@ -1272,11 +1353,13 @@ For **retail forecasting practitioners**:
 All code, data, and analysis files are available in the project repository:
 
 ```
-project/
+PROJECT/
 ├── data/
 │   └── train.csv
-├── walmart_forecasting_project.qmd
-├── run_trend_analysis.py
+├──my quarto/
+    └── Part1.qmd
+    └──run_trend_analysis.py
+├──Part1_Comparing_HigherLevel_UnitLevel.ipynb # Same logic, same code with quarto doc
 └── requirements.txt
 ```
 
@@ -1308,7 +1391,7 @@ print(f"NumPy version: {np.__version__}")
 This entire analysis can be reproduced by running:
 
 ```bash
-quarto render walmart_forecasting_project.qmd
+quarto render Part1.qmd
 ```
 
 All random seeds (if applicable) and data processing steps are documented in the code blocks above.
