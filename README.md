@@ -57,7 +57,7 @@ This project is part of the **Workshop I - Supply Chain** course in the Master i
 
 ---
 
-## 🚀 Installation & Setup
+##  Installation & Setup
 
 ### Prerequisites
 
@@ -226,7 +226,7 @@ Walmart Store Sales Forecasting - [Kaggle Competition](https://www.kaggle.com/c/
 - **Weekly_Sales**: Sales for the department in the given week
 
 
-## 🔬 Methodology
+##  Methodology
 
 ### Statistical Framework
 
@@ -303,7 +303,7 @@ Where:
 
 ---
 
-## ▶️ How to Run
+##  How to Run
 
 ### Option 1: Jupyter Notebook
 
@@ -367,7 +367,6 @@ Master in Data Science, University of Luxembourg.
 
 ---
 
-##  Contact
 
 ### Authors
 
@@ -376,24 +375,4 @@ Master in Data Science, University of Luxembourg.
 **Costin-Andrei Taulescu**
 
 
-## 📌 Project Status
-
--  Part 1: **Completed** (Forecasting Methods Comparison)
--  Part 2: **In Progress** (Rebate Optimization)
--  Documentation: **Ongoing**
--  Testing: **Continuous**
-
-### Roadmap
-
-- [x] Data acquisition and preprocessing
-- [x] Exploratory data analysis
-- [x] Method 1 implementation
-- [x] Method 2 implementation
-- [x] Comparative analysis
-- [x] Quarto report generation
-- [ ] Part 2 implementation
-- [ ] Advanced models (ARIMA, Prophet)
-- [ ] Final presentation preparation
-- [ ] Project submission
->>>>>>> d3c7ae1 (Fix Readme)
 
