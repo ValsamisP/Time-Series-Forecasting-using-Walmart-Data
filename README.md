@@ -360,7 +360,7 @@ This project is submitted as part of academic coursework. Please respect academi
 
 **Citation:**
 ```
-Valsamis, P., & Taulescu, C. (2025). Walmart Sales Forecasting: Time Series Analysis Workshop.
+Valsamis, P., & Taulescu, C. (2026). Walmart Sales Forecasting: Time Series Analysis Workshop.
 Master in Data Science, University of Luxembourg.
 ```
 
