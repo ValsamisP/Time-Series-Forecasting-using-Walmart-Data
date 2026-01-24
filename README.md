@@ -3,7 +3,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![Status](https://img.shields.io/badge/Status-In%20Progress-yellow)](https://github.com)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE.txt)
 
 > **Master in Data Science - University of Luxembourg**  
 > **Authors:** Panagiotis Valsamis & Costin-Andrei Taulescu   
@@ -353,7 +353,7 @@ quarto render Part1.qmd --to pdf
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
 
 ### Academic Use
 
