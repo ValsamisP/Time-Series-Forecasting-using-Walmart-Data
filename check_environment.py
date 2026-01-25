@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Environment Check Script for Walmart Forecasting Project
+Environment Check Script for the Project
 Verifies that all dependencies are correctly installed across platforms.
 """
 
@@ -29,10 +29,10 @@ def check_python_version():
     print(f"Architecture: {platform.machine()}")
     
     if version < (3, 8):
-        print("❌ ERROR: Python 3.8 or higher is required")
+        print("ERROR: Python 3.8 or higher is required")
         return False
     else:
-        print("✅ Python version is compatible")
+        print("Python version is compatible")
         return True
 
 
@@ -48,10 +48,10 @@ def check_pip():
             check=True
         )
         print(result.stdout.strip())
-        print("✅ Pip is available")
+        print("Pip is available")
         return True
     except subprocess.CalledProcessError:
-        print("❌ ERROR: Pip is not available")
+        print("ERROR: Pip is not available")
         return False
 
 
@@ -78,9 +78,9 @@ def check_packages():
             # Get version if available
             module = sys.modules[import_name.split('.')[0]]
             version = getattr(module, '__version__', 'unknown')
-            print(f"✅ {display_name:15s} {version}")
+            print(f"{display_name:15s} {version}")
         except ImportError as e:
-            print(f"❌ {display_name:15s} NOT INSTALLED")
+            print(f"{display_name:15s} NOT INSTALLED")
             all_ok = False
     
     return all_ok
@@ -95,7 +95,7 @@ def check_data_files():
     required_files = ["train.csv", "test.csv", "features.csv", "stores.csv"]
     
     if not data_dir.exists():
-        print(f"⚠️  WARNING: 'data' directory not found at {data_dir.absolute()}")
+        print(f"WARNING: 'data' directory not found at {data_dir.absolute()}")
         print("   Make sure you're running this from the project root")
         return False
     
@@ -104,9 +104,9 @@ def check_data_files():
         filepath = data_dir / filename
         if filepath.exists():
             size_mb = filepath.stat().st_size / (1024 * 1024)
-            print(f"✅ {filename:20s} ({size_mb:.2f} MB)")
+            print(f"{filename:20s} ({size_mb:.2f} MB)")
         else:
-            print(f"❌ {filename:20s} NOT FOUND")
+            print(f"{filename:20s} NOT FOUND")
             all_files_present = False
     
     return all_files_present
@@ -124,9 +124,9 @@ def check_notebooks():
     all_present = True
     for notebook in notebooks:
         if Path(notebook).exists():
-            print(f"✅ {notebook}")
+            print(f"{notebook}")
         else:
-            print(f"⚠️  {notebook} not found")
+            print(f"{notebook} not found")
             all_present = False
     
     return all_present
@@ -150,13 +150,13 @@ def test_basic_functionality():
         mean_a = df['A'].mean()
         std_b = df['B'].std()
         
-        print("✅ Pandas DataFrame operations work")
-        print("✅ NumPy random number generation works")
-        print("✅ Statistical calculations work")
+        print("Pandas DataFrame operations work")
+        print("NumPy random number generation works")
+        print("Statistical calculations work")
         return True
         
     except Exception as e:
-        print(f"❌ Error during functionality test: {e}")
+        print(f"Error during functionality test: {e}")
         return False
 
 
@@ -180,7 +180,7 @@ def main():
         try:
             results[name] = check_func()
         except Exception as e:
-            print(f"\n❌ Error during {name} check: {e}")
+            print(f"\nError during {name} check: {e}")
             results[name] = False
     
     # Summary
@@ -190,18 +190,18 @@ def main():
     passed_checks = sum(results.values())
     
     for name, passed in results.items():
-        status = "✅ PASS" if passed else "❌ FAIL"
+        status = "PASS" if passed else "FAIL"
         print(f"{status:10s} {name}")
     
     print("\n" + "=" * 60)
     print(f" Result: {passed_checks}/{total_checks} checks passed")
     
     if passed_checks == total_checks:
-        print(" 🎉 Environment is fully set up and ready!")
+        print("Environment is fully set up and ready!")
     elif passed_checks >= total_checks - 2:
-        print(" ⚠️  Environment mostly ready, minor issues present")
+        print("Environment mostly ready, minor issues present")
     else:
-        print(" ❌ Environment setup incomplete, please fix errors above")
+        print("Environment setup incomplete, please fix errors above")
     
     print("=" * 60 + "\n")
     
