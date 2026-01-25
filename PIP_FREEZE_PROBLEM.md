@@ -1,8 +1,10 @@
 # Understanding the `pip freeze` Cross-Platform Problem
 
-## The Problem You Encountered
+## The Problem we Encountered
 
-When you ran `pip freeze > requirements.txt` on Windows and then tried to use it on macOS, it failed because:
+We decided to create a pip freeze problem document after facing issues with our `requirements.txt` file generated via `pip freeze`. The file worked perfectly on Windows but caused installation failures on macOS and Linux systems. The idea is for us to being able to take a look at what went wrong and how to fix it for future projects.
+
+When we ran `pip freeze > requirements.txt` on Windows and then tried to use it on macOS, it failed because:
 
 ### 1. Platform-Specific Dependencies
 
@@ -40,7 +42,7 @@ idna==3.6                # Transitive dependency of requests
 urllib3==2.2.0           # Transitive dependency of requests
 ```
 
-You only need `requests` in your requirements - pip will install the rest automatically.
+We only need `requests` in your requirements - pip will install the rest automatically.
 
 ### 4. Exact Version Pinning
 
@@ -83,7 +85,7 @@ charset-normalizer==3.3.2
 
 **Use:**
 ```txt
-# ✅ Only what YOU directly use
+# ✅ Only what we directly use
 pandas>=2.0.0,<3.0.0
 numpy>=1.24.0,<2.0.0
 matplotlib>=3.7.0,<4.0.0
@@ -105,7 +107,7 @@ python-apt>=2.0.0; sys_platform == 'linux'
 
 ### Method 1: Manual Curation (Recommended)
 
-1. **List what YOU import:**
+1. **List what we import:**
    ```python
    import pandas       # Add: pandas>=2.0.0,<3.0.0
    import numpy        # Add: numpy>=1.24.0,<2.0.0
@@ -125,7 +127,7 @@ python-apt>=2.0.0; sys_platform == 'linux'
 pip install pipreqs
 pipreqs . --force --mode no-pin
 
-# Generates requirements.txt based on imports in your code
+# Generates requirements.txt based on imports in our code
 ```
 
 Then manually add version constraints.
@@ -147,9 +149,9 @@ pip-compile requirements.in
 
 ---
 
-## Your Specific Fix
+## Specific Fix
 
-### Replace your current `requirements.txt` with:
+### Replace our current `requirements.txt` with:
 
 ```txt
 # Core Data Science Libraries

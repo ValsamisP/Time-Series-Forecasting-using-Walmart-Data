@@ -1,6 +1,7 @@
 # Walmart Sales Forecasting: Time Series Analysis Workshop
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![Docker](https://img.shields.io/badge/Docker-Compatible-2496ED?logo=docker)](https://www.docker.com/)
 [![Status](https://img.shields.io/badge/Status-In%20Progress-yellow)](https://github.com)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE.txt)
 
@@ -10,8 +11,7 @@
 
 ---
 
-
-##  Project Overview
+## 📋 Project Overview
 
 This project is part of the **Workshop I - Supply Chain** course in the Master in Data Science program at the University of Luxembourg. The objective is to gain hands-on experience in dealing with, modeling, forecasting, and solving real-world complex time series problems using Walmart sales data from a historical Kaggle competition.
 
@@ -29,30 +29,68 @@ This project is part of the **Workshop I - Supply Chain** course in the Master i
 
 ---
 
-##  Repository Structure
+## 📁 Repository Structure
 
 ```
-
-
- Project/
+Time-Series-Forecasting-using-Walmart-Data/
 ├── data/
 │   ├── train.csv                      # Historical sales training data
 │   ├── test.csv                       # Test data for predictions
 │   ├── features.csv                   # Additional features (stores, holidays)
 │   └── stores.csv                     # Store metadata
 │
-├── quarto/
+├── myquarto/
 │   └── Part1.qmd                      # Quarto document for Part 1 analysis
 │
-│
-├── Part1_Comparing_HigherLevel_UnitLevel.ipynb  # Jupyter notebook version
-│
+├── Part1_Comparing_HigherLevel_UnitLevel.ipynb
+├── Part2.ipynb
 │
 ├── requirements.txt                   # Python dependencies
+├── requirements-dev.txt               # Development dependencies
+├── check_environment.py               # Environment verification script
+├── setup.sh                           # Setup script for macOS/Linux
+├── setup.bat                          # Setup script for Windows
+├── .gitattributes                     # Git line ending configuration
+│
+├── INSTALLATION.md                    # Detailed installation guide
 ├── README.md                          # This file
 └── .gitignore                         # Git ignore rules
-
 ```
+
+---
+
+##  Quick Start
+
+### Option 1: Automated Setup (Recommended)
+
+**Windows:**
+```bash
+setup.bat
+```
+
+**macOS/Linux:**
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+The setup script will automatically:
+- ✅ Check Python version (3.8+ required)
+- ✅ Create virtual environment
+- ✅ Install all dependencies
+- ✅ Verify installation
+
+### Option 2: Manual Installation
+
+See **[INSTALLATION.md](INSTALLATION.md)** for detailed cross-platform setup instructions.
+
+### Option 3: Docker (Coming Soon)
+
+```bash
+docker-compose up
+```
+
+Access Jupyter at `http://localhost:8888`
 
 ---
 
@@ -61,66 +99,66 @@ This project is part of the **Workshop I - Supply Chain** course in the Master i
 ### Prerequisites
 
 - **Python 3.8+** installed on your system
-- **Quarto CLI** (optional, for rendering Quarto documents) - [Install Quarto](https://quarto.org/docs/get-started/)
 - **Git** for version control
+- **Quarto CLI** (optional, for rendering Quarto documents) - [Install Quarto](https://quarto.org/docs/get-started/)
 
-### Step 1: Clone the Repository
+### Quick Install
 
 ```bash
+# Clone the repository
 git clone https://github.com/ValsamisP/Time-Series-Forecasting-using-Walmart-Data.git
-cd walmart-forecasting/Project
+cd Time-Series-Forecasting-using-Walmart-Data
+
+# Run automated setup
+# Windows: setup.bat
+# macOS/Linux: ./setup.sh
+
+# Verify installation
+python check_environment.py
 ```
 
-### Step 2: Create Virtual Environment
+### Manual Setup
 
-**Windows:**
+**Step 1: Create Virtual Environment**
+
+Windows:
 ```powershell
 python -m venv venv
 venv\Scripts\activate
 ```
 
-**macOS/Linux:**
+macOS/Linux:
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-### Step 3: Install Dependencies
+**Step 2: Install Dependencies**
 
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### Step 4: Verify Installation
+**Step 3: Verify Installation**
 
-```python
-python -c "import pandas; import numpy; import matplotlib; print('✓ All packages installed successfully!')"
-```
-
-### Step 5: Install Quarto (Optional)
-
-If you want to render the Quarto documents:
-
-**Windows:**
-- Download from [quarto.org](https://quarto.org/docs/get-started/)
-- Run the installer
-
-**macOS:**
 ```bash
-brew install quarto
+python check_environment.py
 ```
 
-**Linux:**
-```bash
-# Download from https://quarto.org/docs/download/
-sudo dpkg -i quarto-*.deb
+You should see:
+```
+✅ All checks passed!
+🎉 Environment is fully set up and ready!
 ```
 
-Verify installation:
-```bash
-quarto --version
-```
+### Troubleshooting
+
+If you encounter installation issues, see **[INSTALLATION.md](INSTALLATION.md)** for:
+- Platform-specific troubleshooting
+- Common error solutions
+- Build tool requirements
+- Detailed step-by-step instructions
 
 ---
 
@@ -182,7 +220,7 @@ quarto preview Part1.qmd
 
 **Jupyter Notebook:**
 ```bash
-jupyter notebook notebooks/Part1_Comparing_HigherLevel_UnitLevel.ipynb
+jupyter notebook Part1_Comparing_HigherLevel_UnitLevel.ipynb
 ```
 
 ---
@@ -200,20 +238,11 @@ Part 2 will focus on **maximizing forecast accuracy** to optimize rebate opportu
 
 ---
 
-##  Data Description
+## Data 
 
 ### Source
 
 Walmart Store Sales Forecasting - [Kaggle Competition](https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting)
-
-### Files
-
-| File | Description | Size |
-|------|-------------|------|
-| `train.csv` | Historical weekly sales data | 421,570 rows |
-| `test.csv` | Test set for predictions | 115,064 rows |
-| `features.csv` | Store, department, regional info | Multiple tables |
-| `stores.csv` | Store type and size metadata | 45 stores |
 
 **Note:** Only `train.csv` is used for Part 1 analysis.
 
@@ -224,8 +253,9 @@ Walmart Store Sales Forecasting - [Kaggle Competition](https://www.kaggle.com/c/
 - **Date**: Week ending date (2010-2012)
 - **Weekly_Sales**: Sales for the department in the given week
 
+---
 
-##  Methodology
+## Methodology
 
 ### Statistical Framework
 
@@ -276,8 +306,7 @@ Where:
 
 ---
 
-
-### Part 1 Summary
+##  Part 1 Summary
 
 **Winner:** Method 2 (Aggregate-Disaggregate)
 
@@ -287,14 +316,20 @@ Where:
 2. **Granularity Trade-off**: Not all problems benefit from maximum granularity
 3. **Context Matters**: Department characteristics determine optimal approach
 
-
 ---
 
-##  Technologies Used
+## Technologies Used
 
+### Core Technologies
+- **Python 3.8+**: Programming language
+- **pandas**: Data manipulation and analysis
+- **NumPy**: Numerical computing
+- **statsmodels**: Statistical modeling and time series analysis
+- **matplotlib/seaborn**: Data visualization
+- **scipy**: Scientific computing
+- **pymannkendall**: Mann-Kendall trend test
 
 ### Additional Tools
-
 - **Jupyter Notebook**: Interactive development
 - **Quarto**: Reproducible reporting
 - **Git**: Version control
@@ -302,7 +337,7 @@ Where:
 
 ---
 
-##  How to Run
+## How to Run
 
 ### Option 1: Jupyter Notebook
 
@@ -316,7 +351,7 @@ venv\Scripts\activate  # Windows
 jupyter notebook
 
 # Navigate to:
-# notebooks/Part1_Comparing_HigherLevel_UnitLevel.ipynb
+# Part1_Comparing_HigherLevel_UnitLevel.ipynb
 ```
 
 ### Option 2: Quarto Document
@@ -335,8 +370,16 @@ quarto render Part1.qmd
 quarto render Part1.qmd --to pdf
 ```
 
+---
+
+## 📚 Documentation
+
+- **[INSTALLATION.md](INSTALLATION.md)** - Comprehensive installation guide for all platforms
+- **[PIP_FREEZE_PROBLEM.md](PIP_FREEZE_PROBLEM.md)** - Understanding cross-platform dependency issues
 
 ---
+
+## Acknowledgments
 
 ### Data Source
 
@@ -349,10 +392,11 @@ quarto render Part1.qmd --to pdf
 - Holt, C. C. (2004). *Forecasting seasonals and trends by exponentially weighted moving averages*
 - Winters, P. R. (1960). *Forecasting sales by exponentially weighted moving averages*
 
+---
 
-## 📝 License
+## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
 
 ### Academic Use
 
@@ -366,12 +410,45 @@ Master in Data Science, University of Luxembourg.
 
 ---
 
+## Authors
 
-### Authors
+**Panagiotis Valsamis**  
+Master in Data Science, University of Luxembourg
 
-**Panagiotis Valsamis**
+**Costin-Andrei Taulescu**  
+Master in Data Science, University of Luxembourg
 
-**Costin-Andrei Taulescu**
+---
 
+## Issues & Contributing
 
+If you encounter any issues or have suggestions:
 
+1. Check **[INSTALLATION.md](INSTALLATION.md)** for troubleshooting
+2. Run `python check_environment.py` to diagnose problems
+3. Create an issue on GitHub with:
+   - Your OS and Python version
+   - Full error message
+   - Output of the environment check
+
+---
+
+## System Requirements
+
+- **Python**: 3.8 or higher
+- **RAM**: 4GB minimum (8GB recommended)
+- **Disk Space**: 500MB for dependencies + data files
+- **OS**: Windows 10+, macOS 10.14+, or modern Linux distribution
+
+---
+
+## Cross-Platform Compatibility
+
+This project is fully compatible with:
+- ✅ Windows 10/11
+- ✅ macOS 10.14+
+- ✅ Ubuntu 20.04+
+- ✅ Debian 10+
+- ✅ Fedora 34+
+
+All dependencies are tested across platforms. See **[INSTALLATION.md](INSTALLATION.md)** for platform-specific notes.
