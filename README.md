@@ -213,9 +213,9 @@ In supply chain operations, retailers often negotiate contracts with suppliers t
 2. Minimize accuracy loss (secondary)
 
 **Results:**
-- **Optimal dampening: [X]%**
-- **Qualifying months: [Y]/12** (+[Y-6] improvement)
-- **Accuracy impact: [Z]% MAE change**
+- **Optimal dampening: [13]%**
+- **Qualifying months: [6]/12** (+[1] improvement)
+- **Accuracy impact: [~10]% MAE change**
 
 **Key Insight:**
 Conservative forecasting reduces variance in monthly ρ, pulling extreme values closer to the bracket boundaries. This creates a **win-win scenario** when done optimally.
@@ -224,7 +224,7 @@ Conservative forecasting reduces variance in monthly ρ, pulling extreme values 
 
  **Question 2.1**: Horizon-2 forecasting with optimal Holt-Winters parameters  
  **Question 2.2**: Rebate bracket determination (±1.53% for 6/12 qualification)  
- **Question 2.3a**: Strategy improves qualification by +[N] months  
+ **Question 2.3a**: Strategy improves qualification by +[1] months  
  **Question 2.3b**: Accuracy trade-off quantified and justified  
 
 ### Access Part 2
