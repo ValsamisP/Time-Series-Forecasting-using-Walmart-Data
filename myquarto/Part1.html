@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Costin-Andrei Taulescu &amp; Panagiotis Valsamis">
-<meta name="dcterms.date" content="2026-01-25">
+<meta name="dcterms.date" content="2026-01-27">
 
 <title>Time Series Forecasting: Walmart Sales Analysis Part 1</title>
 <style>
@@ -226,7 +226,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 25, 2026</p>
+      <p class="date">January 27, 2026</p>
     </div>
   </div>
   
@@ -284,7 +284,7 @@ Key Finding
 </section>
 <section id="required-libraries" class="level2">
 <h2 class="anchored" data-anchor-id="required-libraries">Required Libraries</h2>
-<div id="5f727c8b" class="cell" data-execution_count="1">
+<div id="9d8b03b6" class="cell" data-execution_count="1">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -313,7 +313,7 @@ Key Finding
 <h1>Data Overview</h1>
 <section id="loading-the-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="loading-the-dataset">Loading the Dataset</h2>
-<div id="7c626626" class="cell" data-execution_count="2">
+<div id="59d47613" class="cell" data-execution_count="2">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load training data</span></span>
@@ -391,7 +391,7 @@ Data Issue Detected
 <p>The dataset contains negative values in <code>Weekly_Sales</code>, which are not meaningful in this context. We will set these to zero.</p>
 </div>
 </div>
-<div id="312bef0e" class="cell" data-execution_count="3">
+<div id="32de9b96" class="cell" data-execution_count="3">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_negative_values_zero(df, column_name):</span>
@@ -410,7 +410,7 @@ Data Issue Detected
 <section id="focus-store-1-analysis" class="level1">
 <h1>Focus: Store 1 Analysis</h1>
 <p>For this analysis, we focus exclusively on Store 1 to compare forecasting methods.</p>
-<div id="61387be9" class="cell" data-execution_count="4">
+<div id="038828ae" class="cell" data-execution_count="4">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for Store 1</span></span>
@@ -442,7 +442,7 @@ Name: count, Length: 77, dtype: int64</code></pre>
 </div>
 <section id="train-test-split" class="level2">
 <h2 class="anchored" data-anchor-id="train-test-split">Train-Test Split</h2>
-<div id="bcebafe5" class="cell" data-execution_count="5">
+<div id="061fab25" class="cell" data-execution_count="5">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Date to datetime</span></span>
@@ -556,7 +556,7 @@ Notes for Statistical Tests
 </ul>
 </div>
 </div>
-<div id="26fa1368" class="cell" data-execution_count="7">
+<div id="eca79e30" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> run_trend_analysis <span class="im">import</span> analyze_series</span>
@@ -752,7 +752,7 @@ Note
 </section>
 <section id="step-3-holt-winters-forecasting-additive-seasonality" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-holt-winters-forecasting-additive-seasonality">Step 3: Holt-Winters Forecasting (Additive Seasonality)</h2>
-<div id="bcd9689f" class="cell" data-execution_count="8">
+<div id="bb7cb863" class="cell" data-execution_count="8">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> TSE(y_true, y_pred):</span>
@@ -791,7 +791,7 @@ Note
 </div>
 <section id="grid-search-for-optimal-parameters" class="level3">
 <h3 class="anchored" data-anchor-id="grid-search-for-optimal-parameters">Grid Search for Optimal Parameters</h3>
-<div id="ded3f9a0" class="cell" data-execution_count="9">
+<div id="05490b2b" class="cell" data-execution_count="9">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> store_1_aggregated_train[<span class="st">"Weekly_Sales"</span>].values</span>
@@ -922,7 +922,7 @@ Figure&nbsp;2: Holt-Winters Additive Forecast vs Actuals
 </section>
 <section id="better-visualization-of-the-predictionadditive" class="level3">
 <h3 class="anchored" data-anchor-id="better-visualization-of-the-predictionadditive">Better Visualization of the prediction(Additive)</h3>
-<div id="fc6f4dee" class="cell" data-execution_count="11">
+<div id="7530b8cc" class="cell" data-execution_count="11">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
@@ -964,7 +964,7 @@ Figure&nbsp;2: Holt-Winters Additive Forecast vs Actuals
 </section>
 <section id="step-4-alternative-model---multiplicative-seasonality" class="level2">
 <h2 class="anchored" data-anchor-id="step-4-alternative-model---multiplicative-seasonality">Step 4: Alternative Model - Multiplicative Seasonality</h2>
-<div id="b8aa79e8" class="cell" data-execution_count="12">
+<div id="18d9b579" class="cell" data-execution_count="12">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hw_seasonal_no_trend_multiplicative(y, alpha, gamma, m):</span>
@@ -1116,7 +1116,7 @@ Test MAE: 11739.95</code></pre>
 </div>
 <section id="better-visualization-of-the-predictionsmultiplicative" class="level3">
 <h3 class="anchored" data-anchor-id="better-visualization-of-the-predictionsmultiplicative">Better Visualization of the predictions(Multiplicative)</h3>
-<div id="53522c4d" class="cell" data-execution_count="13">
+<div id="ffb820e2" class="cell" data-execution_count="13">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
@@ -1396,7 +1396,7 @@ Notes
 <h1>Method 1: Direct Department-Level Forecasting</h1>
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
-<div id="600cd5e3" class="cell" data-execution_count="17">
+<div id="dfff192e" class="cell" data-execution_count="17">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter Store 1, Department 1</span></span>
@@ -1468,7 +1468,7 @@ Figure&nbsp;5: Store 1, Department 1: Raw Weekly Sales Data
 </section>
 <section id="trend-analysis-for-department-1" class="level2">
 <h2 class="anchored" data-anchor-id="trend-analysis-for-department-1">Trend Analysis for Department 1</h2>
-<div id="41c544b9" class="cell" data-execution_count="19">
+<div id="6a6b6976" class="cell" data-execution_count="19">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>analyze_series(df_store_1_dept_1_train[<span class="st">"Weekly_Sales"</span>], </span>
@@ -2238,7 +2238,7 @@ Study Limitations
 </section>
 <section id="session-information" class="level2">
 <h2 class="anchored" data-anchor-id="session-information">Session Information</h2>
-<div id="4f31ac46" class="cell" data-execution_count="25">
+<div id="88a54eed" class="cell" data-execution_count="25">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
